@@ -40,7 +40,7 @@ if st.button("Fetch Time Table"):
             st.dataframe(df.style.set_properties(**{'font-weight': 'bold'}, subset=pd.IndexSlice[:, ['Subject', 'Room', 'Day', 'Start-Time', 'End-Time']]))
 
             # Create a button for downloading the timetable data as a CSV file
-            csv_data = df.to_csv(index=False, encoding='utf-8')
+            csv_data = df.to_csv(index=False, encoding='utf-8-sig')  # Change encoding to 'utf-8-sig'
             b64 = base64.b64encode(csv_data.encode()).decode()
             button_label = "Download Timetable as CSV"
             st.download_button(label=button_label, data=b64, key="download_timetable_csv")
