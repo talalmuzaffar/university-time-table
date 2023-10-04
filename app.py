@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import pandas as pd
+import base64  # Required for file download
 
 # API base URL
 base_url = "https://universe-timetable.vercel.app/"
@@ -37,8 +38,12 @@ if st.button("Fetch Time Table"):
             # Display the DataFrame with styled headers
             st.markdown("### **Time Table**")
             st.dataframe(df.style.set_properties(**{'font-weight': 'bold'}, subset=pd.IndexSlice[:, ['Subject', 'Room', 'Day', 'Start-Time', 'End-Time']]))
-            
-        else:
-            st.error(f"Failed to fetch time table. Status code: {response.status_code}")
 
-st.markdown("**This webapp was created using API developed by Hassan Rasool and Umar Waseem**")
+            # Create a button for downloading the timetable data as a CSV file
+            csv_data = df.to_csv(index=False, encoding='utf-8')
+            b64 = base64.b64encode(csv_data.encode()).decode()
+            button_label = "Download Timetable as CSV"
+            st.download_button(label=button_label, data=b64, key="download_timetable_csv")
+
+# Add the credits (always displayed)
+st.markdown('<div style="text-align: center; font-size: small; margin-top: 20px;">**Credits:** Hassan Rasool, Umar Waseem, and Talal Muzaffar 🚀</div>', unsafe_allow_html=True)
