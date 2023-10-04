@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 import pandas as pd
-import base64  # Required for file download
+import base64
 
 # API base URL
 base_url = "https://universe-timetable.vercel.app/"
@@ -40,10 +40,11 @@ if st.button("Fetch Time Table"):
             st.dataframe(df.style.set_properties(**{'font-weight': 'bold'}, subset=pd.IndexSlice[:, ['Subject', 'Room', 'Day', 'Start-Time', 'End-Time']]))
 
             # Create a button for downloading the timetable data as a CSV file
-            csv_data = df.to_csv(index=False, encoding='utf-8-sig')  # Change encoding to 'utf-8-sig'
+            csv_data = df.to_csv(index=False, encoding='utf-8-sig')
             b64 = base64.b64encode(csv_data.encode()).decode()
             button_label = "Download Timetable as CSV"
-            st.download_button(label=button_label, data=b64, key="download_timetable_csv")
+            href = f'<a href="data:file/csv;base64,{b64}" download="timetable.csv">Download Timetable as CSV</a>'
+            st.markdown(href, unsafe_allow_html=True)
 
-# Add the credits (always displayed)
+# Add the credits
 st.markdown('<div style="text-align: center; font-size: small; margin-top: 20px;">**Credits:** Hassan Rasool, Umar Waseem, and Talal Muzaffar 🚀</div>', unsafe_allow_html=True)
