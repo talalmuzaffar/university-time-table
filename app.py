@@ -46,5 +46,4 @@ if st.button("Fetch Time Table"):
             href = f'<a href="data:file/csv;base64,{b64}" download="timetable.csv">Download Timetable as CSV</a>'
             st.markdown(href, unsafe_allow_html=True)
 
-# Add the credits
 st.markdown('<div style="text-align: center; font-size: small; margin-top: 20px;">**Credits:** Hassan Rasool, Umar Waseem, and Talal Muzaffar 🚀</div>', unsafe_allow_html=True)
