@@ -7,7 +7,7 @@ import base64
 base_url = "https://fast-timetable-api.vercel.app/"
 
 # Define the Streamlit app
-st.title("FAST Timetable Viewer")
+st.title("FAST Spring 2024 Timetable Viewer")
 
 # Fetch a list of all subjects
 all_subjects_url = base_url + "all-subjects"
