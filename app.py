@@ -4,7 +4,7 @@ import pandas as pd
 import base64
 
 # API base URL
-base_url = "https://universe-timetable.vercel.app/"
+base_url = "https://fast-timetable-api.vercel.app/"
 
 # Define the Streamlit app
 st.title("FAST Timetable Viewer")
